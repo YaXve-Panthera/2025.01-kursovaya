@@ -7,6 +7,8 @@ using namespace Libary;
 using namespace std;
 
 namespace MemoryWrapper {
+	
+
 	public ref class ManagedGame
 	{
 	private:
@@ -31,6 +33,10 @@ namespace MemoryWrapper {
 			return nativeGame->GetValue(i, j);
 		}
 
+		void SetValue(int i, int j, int v) {
+			return nativeGame->SetValue(i, j, v);
+		}
+
 		cli::array<int, 2>^ GetMatrix() {
 			cli::array<int, 2>^ result = gcnew cli::array<int, 2>(rows, cols);
 
@@ -45,8 +51,12 @@ namespace MemoryWrapper {
 			return result;
 		}
 
-		bool CheckCell(int a, int b) {
-			return nativeGame->CheckCell(a, b);
+		void StartGame() {
+			nativeGame->StartGame();
+		}
+
+		bool CheckCell(int i, int j) {
+			return nativeGame->CheckCell(i, j);
 		}
 
 		void LvlUp() {
@@ -63,6 +73,22 @@ namespace MemoryWrapper {
 
 		void LoadData() {
 			nativeGame->LoadData();
+		}
+
+		void SetGameState(int state) {
+			nativeGame->setGameState(state);
+		}
+
+		int GetGameState() {
+			return nativeGame->gameState;
+		}
+
+		int GetCurrent() {
+			return nativeGame->current;
+		}
+
+		int GetLvl() {
+			return nativeGame->lvl;
 		}
 	};
 }

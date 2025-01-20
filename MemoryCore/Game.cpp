@@ -6,15 +6,46 @@
 using namespace std;
 namespace Libary {
     Game::Game(int e_rows, int e_cols) {
-        rows = e_cols;
+        rows = e_rows;
         cols = e_cols;
         matrix = vector<vector<int>>(rows, vector<int>(cols, 0));
+        /*for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++) {
+                cout << matrix[i][j] << " ";
+            }
+            cout << "\n";
+        }*/
     }
 
     Game::~Game() {  
         matrix.clear();
         matrix.shrink_to_fit();
     }
+
+    void Game::StartGame() {
+        CreateMatrix();
+        current = lvl;
+        gameState = 1;
+    };
+
+    void Game::WinGame() {
+        LvlUp();
+        gameState = 2;
+        if (lvl == rows*cols)
+        {
+            gameState = 3;
+            lvl = 1;
+        }
+    };
+
+    void Game::LoseGame() {
+        LvlDown();
+        if (lvl != 0)
+            gameState = -1;
+        else
+            gameState = -2;
+    };
 
     void Game::CreateMatrix() {
         srand(time(0));
@@ -48,11 +79,20 @@ namespace Libary {
         matrix[i][j] = value;
     };
 
-    bool Game::CheckCell(int a, int b) {
-        if (matrix[a][b] == -1)
+    bool Game::CheckCell(int i, int j) {
+        if (matrix[i][j] == -1){
+            current--;
+            if (current == 0)
+            {
+                WinGame();
+            }
             return true;
+        }
         else
+        {
+            LoseGame();
             return false;
+        }
     };
     void Game::LvlUp() {
         lvl++;
@@ -70,6 +110,11 @@ namespace Libary {
             loseStreak++;
         }
     };
+
     void Game::SaveData() {};
     void Game::LoadData() {};
+
+    void Game::setGameState(int state) {
+        gameState = state;
+    };
 }

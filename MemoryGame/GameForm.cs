@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MemoryWrapper;
 
+
 namespace MemoryGame
 {
     public partial class GameForm : Form
@@ -22,55 +23,22 @@ namespace MemoryGame
         private PictureBox[,] pictureGrid;
         private int[,] matrix;
         private ManagedGame game;
-        /*
-        [DllImport("MemoryDll.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static unsafe extern void fillMatrix(IntPtr[] matrix, int n, int m);
 
-        [DllImport("MemoryDll.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static unsafe extern void matrixEnd(IntPtr[] matrix, int n, int m, int lvl);
-
-        private unsafe int[][] fillMatrixSharp(int n, int m)
-        {
-            int[][] matrix = new int[n][];
-
-            IntPtr[] ptrArray = new IntPtr[n];
-
-            for (int i = 0; i < n; i++)
-            {
-                matrix[i] = new int[m];
-                ptrArray[i] = Marshal.AllocHGlobal(m * sizeof(int));
-            }
-
-            fillMatrix(ptrArray, n, m);
-            matrixEnd(ptrArray, n, m, 3);
-
-            for (int i = 0; i < n; i++)
-            {
-                Marshal.Copy(ptrArray[i], matrix[i], 0, m);
-                Marshal.FreeHGlobal(ptrArray[i]); // Освобождаем память
-            }
-
-            return matrix;
-        }*/
-
-        public GameForm(int time, int rows, int cols)
+        public GameForm(int time, int cols, int rows)
         {
             InitializeComponent();
             this.time = time;
             this.rows = rows;
             this.cols = cols;
 
-            label1.Text = time.ToString();
-            label2.Text = rows.ToString();
-            label3.Text = cols.ToString();
-
             int buttonSize = 50; // Размер кнопок
             int spacing = 5;     // Отступы между кнопками
 
             // Устанавливаем размер формы в зависимости от количества кнопок
-            this.ClientSize = new Size(cols * (buttonSize + spacing) + 20, rows * (buttonSize + spacing) + 50);
+            this.ClientSize = new Size(Math.Max(cols * (buttonSize + spacing) + 20, 350), rows * (buttonSize + spacing) + 50);
             TableLayoutPanel.Size = new Size(cols * (buttonSize + spacing), rows * (buttonSize + spacing));
             TablePicturePanel.Size = new Size(cols * (buttonSize + spacing), rows * (buttonSize + spacing));
+            
 
             TableLayoutPanel.ColumnCount = cols;
             TableLayoutPanel.RowCount = rows;
@@ -80,20 +48,61 @@ namespace MemoryGame
 
             game = new ManagedGame(rows, cols);
             game.CreateMatrix();
+            game.SetGameState(0);
             matrix = game.GetMatrix();
 
-            //matrix = fillMatrixSharp(cols, rows);
-
-            
-
-            GeneratePictureTable(cols, rows);
-
-            GenerateButtonTable(cols, rows);
+            label1.Text = $"Time: {time}";
+            label2.Text = $"Size: {rows}x{cols}";
+            label3.Text = $"Lvl: {game.GetLvl()}";
+            label4.Text = $"Remains: {game.GetCurrent()}";
 
             TableLayoutPanel.Hide();
 
-            TablePicturePanel.Visible = false;
+            TablePicturePanel.Hide();
+        }
 
+        void StartGame()
+        {
+            game.StartGame();
+            matrix = game.GetMatrix();
+
+            label3.Text = $"Lvl: {game.GetLvl()}";
+            label4.Text = $"Remains: {game.GetCurrent()}";
+
+            GeneratePictureTable(rows, cols);
+            GenerateButtonTable(rows, cols);
+
+            TableLayoutPanel.Hide();
+
+            StartButton.Visible = false;
+            TablePicturePanel.Visible = true;
+            printMatrix();
+        }
+
+        void printMatrix()
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                for(int j = 0; j < cols; j++)
+                {
+                    Console.Write($"{matrix[i, j]} ");
+                }
+                Console.WriteLine();
+            }   
+        }
+
+        void WinGame()
+        {
+            TablePicturePanel.Controls.Clear();
+            TableLayoutPanel.Controls.Clear();
+            StartButton.Visible = true;
+        }
+
+        void LoseGame()
+        {
+            TablePicturePanel.Controls.Clear();
+            TableLayoutPanel.Controls.Clear();
+            StartButton.Visible = true;
         }
 
         private void GeneratePictureTable(int rows, int cols)
@@ -101,6 +110,7 @@ namespace MemoryGame
             int buttonSize = 50;
             int spacing = 5;
 
+            TablePicturePanel.Controls.Clear();
             pictureGrid = new PictureBox[rows, cols];
 
             for (int i = 0; i < rows; i++)
@@ -121,7 +131,7 @@ namespace MemoryGame
                         //pictureGrid[i, j].Text = $"{matrix[i][j]}";
                     }
                     pictureGrid[i, j].Tag = new Tuple<int, int>(i, j);
-                    pictureGrid[i, j].Click += Button_Click;
+                    //pictureGrid[i, j].Click += Button_Click;
 
                     TablePicturePanel.Controls.Add(pictureGrid[i, j]);
                 }
@@ -133,6 +143,7 @@ namespace MemoryGame
             int buttonSize = 50;
             int spacing = 5;
 
+            TableLayoutPanel.Controls.Clear();
             buttonGrid = new Button[rows, cols];
 
             for (int i = 0; i < rows; i++)
@@ -168,7 +179,34 @@ namespace MemoryGame
                 int row = position.Item1;
                 int col = position.Item2;
                 bool res = game.CheckCell(row, col);
-                MessageBox.Show($"{matrix[row, col]}  {res}");
+
+
+                if (res) {
+                    btn.Image = global::MemoryGame.Properties.Resources.circle;
+                    matrix[row, col] = -2;
+                    game.SetValue(row, col, -2);
+                    label4.Text = $"Remains: {game.GetCurrent()}";
+                }
+
+                if (game.GetGameState() == 2)
+                {
+                    WinGame();
+                    MessageBox.Show($"Win!");
+                }
+
+                if (game.GetGameState() == 3)
+                {
+                    WinGame();
+                    MessageBox.Show($"Absolute Win!");
+                }
+
+                if (game.GetGameState() == -1)
+                {
+                    LoseGame();
+                    MessageBox.Show($"Lose :(");
+                }
+
+                //MessageBox.Show($"{matrix[row, col]}  {res} {game.GetValue(row, col)}");
             }
         }
 
@@ -198,9 +236,10 @@ namespace MemoryGame
 
         async private void StartButton_Click(object sender, EventArgs e)
         {
-            TablePicturePanel.Visible = true;
+            StartGame();
+            
+            await Task.Delay(1 * 1000);
 
-            await Task.Delay(time * 1000);
             TablePicturePanel.Visible = false;
             TableLayoutPanel.Show();
         }

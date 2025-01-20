@@ -2,6 +2,8 @@
 #include <vector>
 using namespace std;
 
+
+
 namespace Libary {
     class Game {
     public:
@@ -11,10 +13,17 @@ namespace Libary {
         int lvl = 1;
         int loseStreak = 0;
         int wins = 0;
+        int gameState = 0;
+        int current = 0;
 
         Game(int e_rows, int e_cols);
 
         ~Game();
+
+        void StartGame();
+        void WinGame();
+        void LoseGame();
+
 
         void CreateMatrix();
         int GetValue(int i, int j);
@@ -24,5 +33,6 @@ namespace Libary {
         void LvlDown();
         void SaveData();
         void LoadData();
+        void setGameState(int state);
     };
 }
