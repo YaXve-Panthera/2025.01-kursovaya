@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MemoryWrapper;
 
 namespace MemoryGame
 {
@@ -19,7 +20,8 @@ namespace MemoryGame
         private int cols = 0;
         private Button[,] buttonGrid;
         private PictureBox[,] pictureGrid;
-        private int[][] matrix;
+        private int[,] matrix;
+        private ManagedGame game;
         /*
         [DllImport("MemoryDll.dll", CallingConvention = CallingConvention.Cdecl)]
         private static unsafe extern void fillMatrix(IntPtr[] matrix, int n, int m);
@@ -76,19 +78,13 @@ namespace MemoryGame
             TablePicturePanel.ColumnCount = cols;
             TablePicturePanel.RowCount = rows;
 
+            game = new ManagedGame(rows, cols);
+            game.CreateMatrix();
+            matrix = game.GetMatrix();
+
             //matrix = fillMatrixSharp(cols, rows);
 
-            matrix = new int[cols][];
-            for (int i = 0; i < cols; i++)
-            {
-                matrix[i] = new int[rows];
-            }
-            for (int i = 0; i < cols; i++) {
-                for (int j = 0; j < rows; j++)
-                {
-                    matrix[i][j] = 1;
-                }
-            }
+            
 
             GeneratePictureTable(cols, rows);
 
@@ -116,9 +112,9 @@ namespace MemoryGame
                     pictureGrid[i, j].Size = new Size(buttonSize, buttonSize);
                     pictureGrid[i, j].Location = new Point(j * (buttonSize + spacing), i * (buttonSize + spacing));
 
-                    if (matrix[i][j] == -1)
+                    if (matrix[i,j] == -1)
                     {
-                        //pictureGrid[i, j].Image = global::MemoryGame.Properties.Resources.circle;
+                        pictureGrid[i, j].Image = global::MemoryGame.Properties.Resources.circle;
                     }
                     else
                     {
@@ -148,13 +144,13 @@ namespace MemoryGame
                     buttonGrid[i, j].Size = new Size(buttonSize, buttonSize);
                     buttonGrid[i, j].Location = new Point(j * (buttonSize + spacing), i * (buttonSize + spacing));
 
-                    if (matrix[i][j] == -1)
+                    if (matrix[i,j] == -1)
                     {
                         //buttonGrid[i, j].Image = global::MemoryGame.Properties.Resources.circle;
                     }
                     else
                     {
-                        buttonGrid[i, j].Text = $"{matrix[i][j]}";
+                        buttonGrid[i, j].Text = $"{matrix[i,j]}";
                     }
                     buttonGrid[i, j].Tag = new Tuple<int, int>(i, j);
                     buttonGrid[i, j].Click += Button_Click;
@@ -171,7 +167,8 @@ namespace MemoryGame
             {
                 int row = position.Item1;
                 int col = position.Item2;
-                MessageBox.Show($"{matrix[row][col]}");
+                bool res = game.CheckCell(row, col);
+                MessageBox.Show($"{matrix[row, col]}  {res}");
             }
         }
 
