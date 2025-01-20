@@ -24,7 +24,7 @@ namespace MemoryGame
         private int[,] matrix;
         private ManagedGame game;
 
-        public GameForm(int time, int cols, int rows)
+        public GameForm(int time, int cols, int rows, int startlvl)
         {
             InitializeComponent();
             this.time = time;
@@ -46,7 +46,7 @@ namespace MemoryGame
             TablePicturePanel.ColumnCount = cols;
             TablePicturePanel.RowCount = rows;
 
-            game = new ManagedGame(rows, cols);
+            game = new ManagedGame(rows, cols, startlvl);
             game.CreateMatrix();
             game.SetGameState(0);
             matrix = game.GetMatrix();
@@ -161,7 +161,7 @@ namespace MemoryGame
                     }
                     else
                     {
-                        buttonGrid[i, j].Text = $"{matrix[i,j]}";
+                        //buttonGrid[i, j].Text = $"{matrix[i,j]}";
                     }
                     buttonGrid[i, j].Tag = new Tuple<int, int>(i, j);
                     buttonGrid[i, j].Click += Button_Click;
@@ -206,6 +206,12 @@ namespace MemoryGame
                     MessageBox.Show($"Lose :(");
                 }
 
+                if (game.GetGameState() == -2)
+                {
+                    LoseGame();
+                    MessageBox.Show($"Absolute lose :((");
+                }
+
                 //MessageBox.Show($"{matrix[row, col]}  {res} {game.GetValue(row, col)}");
             }
         }
@@ -238,7 +244,7 @@ namespace MemoryGame
         {
             StartGame();
             
-            await Task.Delay(1 * 1000);
+            await Task.Delay(time * 1000);
 
             TablePicturePanel.Visible = false;
             TableLayoutPanel.Show();

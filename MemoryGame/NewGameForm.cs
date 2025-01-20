@@ -15,6 +15,7 @@ namespace MemoryGame
         int time = 5;
         int horSize = 2;
         int vertSize = 2;
+        int lvl = 1;
 
         public NewGameForm()
         {
@@ -23,9 +24,20 @@ namespace MemoryGame
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            GameForm newForm = new GameForm(5, horSize, vertSize);
-            newForm.Show();
-            this.Hide();
+            try
+            {
+                lvl = Convert.ToInt32(LvlTextBox.Text);
+                time = Convert.ToInt32(TimeTextBox.Text);
+                horSize = Convert.ToInt32(HSizeTextBox.Text);
+                vertSize = Convert.ToInt32(VSizeTextBox.Text);
+                GameForm newForm = new GameForm(time, horSize, vertSize, lvl);
+                newForm.Show();
+                this.Hide();
+            }
+            catch
+            {
+                MessageBox.Show($"Please input valid values!");
+            }   
         }
 
         private void NewTestForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -37,44 +49,24 @@ namespace MemoryGame
             ifrm.Show();
         }
 
-        private void TimeTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void LvlTextBox_TextChanged(object sender, EventArgs e)
         {
-            char number = e.KeyChar;
-            if (!Char.IsDigit(number) && number != 8)
-            {
-                e.Handled = true;
-
-            }
         }
 
-        private void HSizeTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void TimeTextBox_TextChanged(object sender, EventArgs e)
         {
-            char number = e.KeyChar;
-            if (!Char.IsDigit(number) && number != 8)
-            {
-                e.Handled = true;
-
-            }
-        }
-
-        private void VSizeTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
-            if (!Char.IsDigit(number) && number != 8)
-            {
-                e.Handled = true;
-            }
+            
         }
 
         private void HSizeTextBox_TextChanged(object sender, EventArgs e)
         {
-            horSize = Convert.ToInt32(HSizeTextBox.Text);
+            
         }
 
         private void VSizeTextBox_TextChanged(object sender, EventArgs e)
         {
-            vertSize = Convert.ToInt32(VSizeTextBox.Text);
+            
         }
-    }
+    }    
 }
 

@@ -5,7 +5,9 @@
 
 using namespace std;
 namespace Libary {
-    Game::Game(int e_rows, int e_cols) {
+    Game::Game(int e_rows, int e_cols, int e_lvl) {
+        startlvl = e_lvl;
+        lvl = e_lvl;
         rows = e_rows;
         cols = e_cols;
         matrix = vector<vector<int>>(rows, vector<int>(cols, 0));
@@ -35,16 +37,19 @@ namespace Libary {
         if (lvl == rows*cols)
         {
             gameState = 3;
-            lvl = 1;
+            lvl = startlvl;
         }
     };
 
     void Game::LoseGame() {
         LvlDown();
-        if (lvl != 0)
+        if (lvl != 0) {
             gameState = -1;
-        else
+        }
+        else {
             gameState = -2;
+            lvl = startlvl;
+        }
     };
 
     void Game::CreateMatrix() {

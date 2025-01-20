@@ -11,12 +11,13 @@ namespace Libary {
         int cols = 1;
         vector<vector<int>> matrix;
         int lvl = 1;
+        int startlvl = 1;
         int loseStreak = 0;
         int wins = 0;
         int gameState = 0;
         int current = 0;
 
-        Game(int e_rows, int e_cols);
+        Game(int e_rows, int e_cols, int e_lvl);
 
         ~Game();
 

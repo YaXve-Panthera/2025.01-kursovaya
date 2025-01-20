@@ -15,10 +15,10 @@ namespace MemoryWrapper {
 		Game* nativeGame;
 		int rows, cols;
 	public:
-		ManagedGame(int r, int c) {
+		ManagedGame(int r, int c, int l) {
 			rows = r;
 			cols = c;
-			nativeGame = new Game(r, c);
+			nativeGame = new Game(r, c, l);
 		}
 
 		~ManagedGame() {
