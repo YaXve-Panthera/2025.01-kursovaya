@@ -92,7 +92,7 @@
             this.LvlTextBox.Name = "LvlTextBox";
             this.LvlTextBox.Size = new System.Drawing.Size(100, 22);
             this.LvlTextBox.TabIndex = 11;
-            this.LvlTextBox.TextChanged += new System.EventHandler(this.LvlTextBox_TextChanged);
+            
             // 
             // TimeTextBox
             // 
@@ -101,7 +101,7 @@
             this.TimeTextBox.Name = "TimeTextBox";
             this.TimeTextBox.Size = new System.Drawing.Size(100, 22);
             this.TimeTextBox.TabIndex = 12;
-            this.TimeTextBox.TextChanged += new System.EventHandler(this.TimeTextBox_TextChanged);
+            
             // 
             // HSizeTextBox
             // 
@@ -110,7 +110,7 @@
             this.HSizeTextBox.Name = "HSizeTextBox";
             this.HSizeTextBox.Size = new System.Drawing.Size(100, 22);
             this.HSizeTextBox.TabIndex = 13;
-            this.HSizeTextBox.TextChanged += new System.EventHandler(this.HSizeTextBox_TextChanged);
+            
             // 
             // VSizeTextBox
             // 
@@ -120,7 +120,7 @@
             this.VSizeTextBox.Size = new System.Drawing.Size(100, 22);
             this.VSizeTextBox.TabIndex = 14;
             this.VSizeTextBox.ValidatingType = typeof(int);
-            this.VSizeTextBox.TextChanged += new System.EventHandler(this.VSizeTextBox_TextChanged);
+            
             // 
             // NewGameForm
             // 

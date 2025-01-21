@@ -225,21 +225,6 @@ namespace MemoryGame
             ifrm.Show();
         }
 
-        private void TestForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TestForm_Shown(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TestForm_Activated(object sender, EventArgs e)
-        {
-
-        }
-
         async private void StartButton_Click(object sender, EventArgs e)
         {
             StartGame();

@@ -48,25 +48,6 @@ namespace MemoryGame
             ifrm.Top = this.Top;
             ifrm.Show();
         }
-
-        private void LvlTextBox_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void TimeTextBox_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void HSizeTextBox_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void VSizeTextBox_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
     }    
 }
 

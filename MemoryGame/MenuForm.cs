@@ -24,16 +24,6 @@ namespace MemoryGame
             this.Hide();
         }
 
-        private void ContinueButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void StatisticsButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();

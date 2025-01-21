@@ -128,10 +128,7 @@
             this.Name = "GameForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Test";
-            this.Activated += new System.EventHandler(this.TestForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Test_FormClosed);
-            this.Load += new System.EventHandler(this.TestForm_Load);
-            this.Shown += new System.EventHandler(this.TestForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

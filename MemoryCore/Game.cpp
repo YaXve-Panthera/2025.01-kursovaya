@@ -105,7 +105,7 @@ namespace Libary {
         loseStreak = 0;
     };
     void Game::LvlDown() {
-        if (loseStreak >= 2)
+        if (loseStreak >= 1)
         {
             lvl--;
             loseStreak = 0;
