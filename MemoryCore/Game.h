@@ -14,6 +14,9 @@ namespace Libary {
         int startlvl = 1;
         int loseStreak = 0;
         int wins = 0;
+        int loses = 0;
+        int games = 0;
+        int rec = 0;
         int gameState = 0;
         int current = 0;
 

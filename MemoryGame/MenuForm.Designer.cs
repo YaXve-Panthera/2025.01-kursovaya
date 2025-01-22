@@ -30,6 +30,7 @@
         {
             this.NewTestButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.StatisticsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // NewTestButton
@@ -45,7 +46,7 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(50, 177);
+            this.ExitButton.Location = new System.Drawing.Point(50, 211);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(118, 44);
             this.ExitButton.TabIndex = 3;
@@ -53,11 +54,22 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
+            // StatisticsButton
+            // 
+            this.StatisticsButton.Location = new System.Drawing.Point(50, 144);
+            this.StatisticsButton.Name = "StatisticsButton";
+            this.StatisticsButton.Size = new System.Drawing.Size(118, 44);
+            this.StatisticsButton.TabIndex = 4;
+            this.StatisticsButton.Text = "Statistics";
+            this.StatisticsButton.UseVisualStyleBackColor = true;
+            this.StatisticsButton.Click += new System.EventHandler(this.StatisticsButton_Click);
+            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(232, 303);
+            this.Controls.Add(this.StatisticsButton);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.NewTestButton);
             this.Name = "MenuForm";
@@ -71,6 +83,7 @@
 
         private System.Windows.Forms.Button NewTestButton;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Button StatisticsButton;
     }
 }
 

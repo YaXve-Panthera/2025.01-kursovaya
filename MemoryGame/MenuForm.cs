@@ -28,5 +28,12 @@ namespace MemoryGame
         {
             this.Close();
         }
+
+        private void StatisticsButton_Click(object sender, EventArgs e)
+        {
+            StatisticsForm newForm = new StatisticsForm();
+            newForm.Show();
+            this.Hide();
+        }
     }
 }

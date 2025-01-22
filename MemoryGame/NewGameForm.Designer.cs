@@ -33,10 +33,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.LvlTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.TimeTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.HSizeTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.VSizeTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.LvlNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TimeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.HSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.VSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.LvlNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HSizeNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VSizeNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // StartButton
@@ -85,52 +89,73 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Start level";
             // 
-            // LvlTextBox
+            // LvlNumericUpDown
             // 
-            this.LvlTextBox.Location = new System.Drawing.Point(63, 57);
-            this.LvlTextBox.Mask = "0000";
-            this.LvlTextBox.Name = "LvlTextBox";
-            this.LvlTextBox.Size = new System.Drawing.Size(100, 22);
-            this.LvlTextBox.TabIndex = 11;
-            
+            this.LvlNumericUpDown.Location = new System.Drawing.Point(63, 57);
+            this.LvlNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.LvlNumericUpDown.Name = "LvlNumericUpDown";
+            this.LvlNumericUpDown.Size = new System.Drawing.Size(98, 22);
+            this.LvlNumericUpDown.TabIndex = 15;
+            this.LvlNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // TimeTextBox
+            // TimeNumericUpDown
             // 
-            this.TimeTextBox.Location = new System.Drawing.Point(63, 101);
-            this.TimeTextBox.Mask = "0000";
-            this.TimeTextBox.Name = "TimeTextBox";
-            this.TimeTextBox.Size = new System.Drawing.Size(100, 22);
-            this.TimeTextBox.TabIndex = 12;
-            
+            this.TimeNumericUpDown.Location = new System.Drawing.Point(63, 101);
+            this.TimeNumericUpDown.Name = "TimeNumericUpDown";
+            this.TimeNumericUpDown.Size = new System.Drawing.Size(98, 22);
+            this.TimeNumericUpDown.TabIndex = 16;
             // 
-            // HSizeTextBox
+            // HSizeNumericUpDown
             // 
-            this.HSizeTextBox.Location = new System.Drawing.Point(63, 145);
-            this.HSizeTextBox.Mask = "0000";
-            this.HSizeTextBox.Name = "HSizeTextBox";
-            this.HSizeTextBox.Size = new System.Drawing.Size(100, 22);
-            this.HSizeTextBox.TabIndex = 13;
-            
+            this.HSizeNumericUpDown.Location = new System.Drawing.Point(63, 145);
+            this.HSizeNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.HSizeNumericUpDown.Name = "HSizeNumericUpDown";
+            this.HSizeNumericUpDown.Size = new System.Drawing.Size(98, 22);
+            this.HSizeNumericUpDown.TabIndex = 17;
+            this.HSizeNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // VSizeTextBox
+            // VSizeNumericUpDown
             // 
-            this.VSizeTextBox.Location = new System.Drawing.Point(63, 189);
-            this.VSizeTextBox.Mask = "0000";
-            this.VSizeTextBox.Name = "VSizeTextBox";
-            this.VSizeTextBox.Size = new System.Drawing.Size(100, 22);
-            this.VSizeTextBox.TabIndex = 14;
-            this.VSizeTextBox.ValidatingType = typeof(int);
-            
+            this.VSizeNumericUpDown.Location = new System.Drawing.Point(63, 189);
+            this.VSizeNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.VSizeNumericUpDown.Name = "VSizeNumericUpDown";
+            this.VSizeNumericUpDown.Size = new System.Drawing.Size(98, 22);
+            this.VSizeNumericUpDown.TabIndex = 18;
+            this.VSizeNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // NewGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(232, 303);
-            this.Controls.Add(this.VSizeTextBox);
-            this.Controls.Add(this.HSizeTextBox);
-            this.Controls.Add(this.TimeTextBox);
-            this.Controls.Add(this.LvlTextBox);
+            this.Controls.Add(this.VSizeNumericUpDown);
+            this.Controls.Add(this.HSizeNumericUpDown);
+            this.Controls.Add(this.TimeNumericUpDown);
+            this.Controls.Add(this.LvlNumericUpDown);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
@@ -140,6 +165,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Test";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NewTestForm_FormClosed);
+            ((System.ComponentModel.ISupportInitialize)(this.LvlNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HSizeNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VSizeNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,9 +181,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.MaskedTextBox LvlTextBox;
-        private System.Windows.Forms.MaskedTextBox TimeTextBox;
-        private System.Windows.Forms.MaskedTextBox HSizeTextBox;
-        private System.Windows.Forms.MaskedTextBox VSizeTextBox;
+        private System.Windows.Forms.NumericUpDown LvlNumericUpDown;
+        private System.Windows.Forms.NumericUpDown TimeNumericUpDown;
+        private System.Windows.Forms.NumericUpDown HSizeNumericUpDown;
+        private System.Windows.Forms.NumericUpDown VSizeNumericUpDown;
     }
 }

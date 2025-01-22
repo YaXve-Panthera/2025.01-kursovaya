@@ -26,17 +26,25 @@ namespace MemoryGame
         {
             try
             {
-                lvl = Convert.ToInt32(LvlTextBox.Text);
-                time = Convert.ToInt32(TimeTextBox.Text);
-                horSize = Convert.ToInt32(HSizeTextBox.Text);
-                vertSize = Convert.ToInt32(VSizeTextBox.Text);
-                GameForm newForm = new GameForm(time, horSize, vertSize, lvl);
-                newForm.Show();
-                this.Hide();
+                
+                lvl = Convert.ToInt32(LvlNumericUpDown.Value);
+                time = Convert.ToInt32(TimeNumericUpDown.Value);
+                horSize = Convert.ToInt32(HSizeNumericUpDown.Value);
+                vertSize = Convert.ToInt32(VSizeNumericUpDown.Value);
+                if (lvl >= horSize * vertSize)
+                {
+                    MessageBox.Show($"Please, input lvl less than number of cells!");
+                }
+                else
+                {
+                    GameForm newForm = new GameForm(time, horSize, vertSize, lvl);
+                    newForm.Show();
+                    this.Hide();
+                }
             }
             catch
             {
-                MessageBox.Show($"Please input valid values!");
+                MessageBox.Show($"Please, input valid values!");
             }   
         }
 

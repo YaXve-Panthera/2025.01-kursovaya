@@ -35,7 +35,7 @@ namespace MemoryGame
             int spacing = 5;     // Отступы между кнопками
 
             // Устанавливаем размер формы в зависимости от количества кнопок
-            this.ClientSize = new Size(Math.Max(cols * (buttonSize + spacing) + 20, 350), rows * (buttonSize + spacing) + 50);
+            this.ClientSize = new Size(Math.Max(cols * (buttonSize + spacing) + 20, 450), rows * (buttonSize + spacing) + 50);
             TableLayoutPanel.Size = new Size(cols * (buttonSize + spacing), rows * (buttonSize + spacing));
             TablePicturePanel.Size = new Size(cols * (buttonSize + spacing), rows * (buttonSize + spacing));
             
@@ -233,6 +233,12 @@ namespace MemoryGame
 
             TablePicturePanel.Visible = false;
             TableLayoutPanel.Show();
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            game.SaveData();
+            MessageBox.Show($"Game data is save");
         }
     }
 }

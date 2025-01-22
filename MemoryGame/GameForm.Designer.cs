@@ -35,6 +35,7 @@
             this.StartButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TableLayoutPanel
@@ -113,11 +114,22 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Remains: 20";
             // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(364, 8);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 10;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(412, 482);
+            this.ClientSize = new System.Drawing.Size(452, 482);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.StartButton);
@@ -142,5 +154,6 @@
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button SaveButton;
     }
 }

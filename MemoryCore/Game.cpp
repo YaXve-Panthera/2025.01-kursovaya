@@ -1,7 +1,11 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "Game.h"
 #include "iostream"
 #include "ctime"
 #include <vector>
+#include <string>
+#include <fstream>
+#include <filesystem>
 
 using namespace std;
 namespace Libary {
@@ -33,6 +37,8 @@ namespace Libary {
 
     void Game::WinGame() {
         LvlUp();
+        wins++;
+        games++;
         gameState = 2;
         if (lvl == rows*cols)
         {
@@ -43,6 +49,8 @@ namespace Libary {
 
     void Game::LoseGame() {
         LvlDown();
+        loses++;
+        games++;
         if (lvl != 0) {
             gameState = -1;
         }
@@ -101,7 +109,9 @@ namespace Libary {
     };
     void Game::LvlUp() {
         lvl++;
-        wins++;
+
+        if (lvl > rec)
+            rec = lvl;
         loseStreak = 0;
     };
     void Game::LvlDown() {
@@ -116,7 +126,30 @@ namespace Libary {
         }
     };
 
-    void Game::SaveData() {};
+    void Game::SaveData() {
+        time_t current_time = time(nullptr);
+        char date_string[100];
+        strftime(date_string, sizeof(date_string), "%d.%m.%Y_%H-%M-%S", localtime(&current_time));
+
+        filesystem::create_directories("data");
+
+        string tim = date_string;
+        string txt = ".txt";
+        string file = filesystem::current_path().string() + "/data/" + tim + txt;
+        ofstream fout;
+        fout.open(file);
+        if (!fout.is_open())
+        {
+            cout << "Ошибка открытия файла" << endl;
+        }
+        fout << date_string << endl;
+        fout << rows << endl << cols << endl;
+        fout << games << endl;
+        fout << wins << endl;
+        fout << loses << endl;
+        fout << rec << endl;
+        fout.close();
+    };
     void Game::LoadData() {};
 
     void Game::setGameState(int state) {
