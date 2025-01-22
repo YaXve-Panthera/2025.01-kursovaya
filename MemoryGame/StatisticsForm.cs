@@ -21,8 +21,8 @@ namespace MemoryGame
 
         private void CreateTable()
         {
-            StatisticsDataGridView.Dock = DockStyle.Fill; // Заполнение всей формы
-            StatisticsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Растягивание колонок
+            StatisticsDataGridView.Dock = DockStyle.Fill; 
+            StatisticsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; 
 
             StatisticsDataGridView.Columns.Add("col1", "Date and time");
             StatisticsDataGridView.Columns.Add("col2", "Field size");

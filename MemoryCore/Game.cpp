@@ -42,8 +42,10 @@ namespace Libary {
         gameState = 2;
         if (lvl == rows*cols)
         {
+			SaveData();
             gameState = 3;
             lvl = startlvl;
+            
         }
     };
 
@@ -55,6 +57,7 @@ namespace Libary {
             gameState = -1;
         }
         else {
+            SaveData();
             gameState = -2;
             lvl = startlvl;
         }
@@ -150,7 +153,6 @@ namespace Libary {
         fout << rec << endl;
         fout.close();
     };
-    void Game::LoadData() {};
 
     void Game::setGameState(int state) {
         gameState = state;

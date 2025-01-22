@@ -36,7 +36,6 @@ namespace Libary {
         void LvlUp();
         void LvlDown();
         void SaveData();
-        void LoadData();
         void setGameState(int state);
     };
 }

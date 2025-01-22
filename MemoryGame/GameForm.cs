@@ -31,10 +31,9 @@ namespace MemoryGame
             this.rows = rows;
             this.cols = cols;
 
-            int buttonSize = 50; // Размер кнопок
-            int spacing = 5;     // Отступы между кнопками
+            int buttonSize = 50; 
+            int spacing = 5;     
 
-            // Устанавливаем размер формы в зависимости от количества кнопок
             this.ClientSize = new Size(Math.Max(cols * (buttonSize + spacing) + 20, 450), rows * (buttonSize + spacing) + 50);
             TableLayoutPanel.Size = new Size(cols * (buttonSize + spacing), rows * (buttonSize + spacing));
             TablePicturePanel.Size = new Size(cols * (buttonSize + spacing), rows * (buttonSize + spacing));
@@ -48,7 +47,6 @@ namespace MemoryGame
 
             game = new ManagedGame(rows, cols, startlvl);
             game.CreateMatrix();
-            game.SetGameState(0);
             matrix = game.GetMatrix();
 
             label1.Text = $"Time: {time}";
@@ -154,15 +152,6 @@ namespace MemoryGame
                     buttonGrid[i, j].FlatStyle = FlatStyle.Flat;
                     buttonGrid[i, j].Size = new Size(buttonSize, buttonSize);
                     buttonGrid[i, j].Location = new Point(j * (buttonSize + spacing), i * (buttonSize + spacing));
-
-                    if (matrix[i,j] == -1)
-                    {
-                        //buttonGrid[i, j].Image = global::MemoryGame.Properties.Resources.circle;
-                    }
-                    else
-                    {
-                        //buttonGrid[i, j].Text = $"{matrix[i,j]}";
-                    }
                     buttonGrid[i, j].Tag = new Tuple<int, int>(i, j);
                     buttonGrid[i, j].Click += Button_Click;
 
@@ -197,7 +186,7 @@ namespace MemoryGame
                 if (game.GetGameState() == 3)
                 {
                     WinGame();
-                    MessageBox.Show($"Absolute Win!");
+                    MessageBox.Show($"Full victory! Statistics is saved.");
                 }
 
                 if (game.GetGameState() == -1)
@@ -209,10 +198,8 @@ namespace MemoryGame
                 if (game.GetGameState() == -2)
                 {
                     LoseGame();
-                    MessageBox.Show($"Absolute lose :((");
+                    MessageBox.Show($"Full lose. Statistics is saved");
                 }
-
-                //MessageBox.Show($"{matrix[row, col]}  {res} {game.GetValue(row, col)}");
             }
         }
 

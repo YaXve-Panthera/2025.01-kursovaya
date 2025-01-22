@@ -71,13 +71,10 @@ namespace MemoryWrapper {
 			nativeGame->SaveData();
 		}
 
-		void LoadData() {
-			nativeGame->LoadData();
-		}
-
+		/*
 		void SetGameState(int state) {
 			nativeGame->setGameState(state);
-		}
+		}*/
 
 		int GetGameState() {
 			return nativeGame->gameState;

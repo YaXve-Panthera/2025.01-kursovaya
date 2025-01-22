@@ -109,15 +109,25 @@
             // TimeNumericUpDown
             // 
             this.TimeNumericUpDown.Location = new System.Drawing.Point(63, 101);
+            this.TimeNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.TimeNumericUpDown.Name = "TimeNumericUpDown";
             this.TimeNumericUpDown.Size = new System.Drawing.Size(98, 22);
             this.TimeNumericUpDown.TabIndex = 16;
+            this.TimeNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // HSizeNumericUpDown
             // 
             this.HSizeNumericUpDown.Location = new System.Drawing.Point(63, 145);
             this.HSizeNumericUpDown.Minimum = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -125,7 +135,7 @@
             this.HSizeNumericUpDown.Size = new System.Drawing.Size(98, 22);
             this.HSizeNumericUpDown.TabIndex = 17;
             this.HSizeNumericUpDown.Value = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -134,7 +144,7 @@
             // 
             this.VSizeNumericUpDown.Location = new System.Drawing.Point(63, 189);
             this.VSizeNumericUpDown.Minimum = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -142,7 +152,7 @@
             this.VSizeNumericUpDown.Size = new System.Drawing.Size(98, 22);
             this.VSizeNumericUpDown.TabIndex = 18;
             this.VSizeNumericUpDown.Value = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
